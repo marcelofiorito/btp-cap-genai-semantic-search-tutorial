@@ -1,9 +1,6 @@
 {
-    "welcomeFile": "/api",
+    "welcomeFile": "/index.html",
     "authenticationMethod": "route",
-    "logout": {
-        "logoutEndpoint": "/do/logout"
-    },
     "routes": [
         {
             "source": "^/api(.*)$",
@@ -16,6 +13,11 @@
             "target": "$1",
             "service": "sap-approuter-userapi",
             "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/(.*)$",
+            "target": "$1",
+            "localDir": "./dist"
         }
     ]
 }

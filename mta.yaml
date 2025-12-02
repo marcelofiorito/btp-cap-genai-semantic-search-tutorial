@@ -9,6 +9,9 @@ build-parameters:
         - builder: custom
           commands:
               - npm run build:cf --prefix api
+              - npm run build --prefix ui
+              - rm -rf router/dist
+              - cp -R ui/dist router/dist
 
 modules:
     # --------------------- APPROUTER MODULE ---------------------

@@ -13,6 +13,7 @@ Objetivo: testar grounding com documentos do SAP Document Management Service (DM
 ## O que esta POC entrega
 
 - Serviço CAP OData: `DmsGroundingService` (`/grounding`).
+- App SAP Fiori elements de operação: `app/dms-admin/webapp`.
 - CRUD das entidades:
   - `SourceDocuments`
   - `DocumentChunks`
@@ -53,6 +54,12 @@ A URL padrão do CAP local normalmente fica em:
 Serviço:
 
 - `http://localhost:4004/grounding/`
+
+UI Fiori elements:
+
+- `http://localhost:4004/dms-admin/webapp/index.html`
+- Atalho para `SyncRuns`: `http://localhost:4004/dms-admin/webapp/index.html#/SyncRuns`
+- Atalho para `DocumentChunks`: `http://localhost:4004/dms-admin/webapp/index.html#/DocumentChunks`
 
 ## Teste rápido (modo mock)
 
@@ -101,6 +108,17 @@ Content-Type: application/json
   "topK": 5
 }
 ```
+
+## Operação via Fiori elements
+
+1. Abra a URL da UI.
+2. Na tela de `SourceDocuments`, use a ação `Sincronizar Repositório`.
+3. Preencha os parâmetros:
+   - `repositoryId`
+   - `folderPath` (ex.: `/`)
+   - `limit` (ex.: `20`)
+4. Acompanhe o histórico em `SyncRuns`.
+5. Gere chunks via API (`generateChunks`) ou ajuste para acionar por ação de UI em próxima iteração.
 
 ## Conexão com DMS real
 

@@ -14,7 +14,8 @@
     "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1.9.0"
+    "@cap-js/sqlite": "^1.9.0",
+    "playwright": "^1.60.0"
   },
   "cds": {
     "requires": {

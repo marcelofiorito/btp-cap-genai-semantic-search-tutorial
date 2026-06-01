@@ -88,7 +88,7 @@ export default class SampleService extends cds.ApplicationService {
         this.on("search", this.onSearch);
     }
 
-    private onEmbed = async (req: cds.Request): Promise<any> => {
+    private onEmbed = async (req: any): Promise<any> => {
         const dataObj = JSON.parse(req.data.data);
         const { text, title, author, date, summary, category, tags, language, publication, rights, numberOfPages } = dataObj;
         const { Documents } = this.entities;
@@ -129,7 +129,7 @@ export default class SampleService extends cds.ApplicationService {
         return false;
     };
 
-    private onSearch = async (req: cds.Request): Promise<any> => {
+    private onSearch = async (req: any): Promise<any> => {
         const { snippets } = req.data;
         const baseText = snippets.join("|")
 

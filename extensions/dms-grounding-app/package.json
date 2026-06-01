@@ -1,0 +1,28 @@
+{
+  "name": "dms-grounding-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "POC isolada para grounding com SAP DMS + CAP",
+  "scripts": {
+    "start": "cds serve",
+    "watch": "cds watch",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@sap/cds": "^8.6.1",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1.9.0"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }
+      }
+    }
+  }
+}

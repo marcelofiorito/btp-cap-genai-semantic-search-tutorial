@@ -1,0 +1,39 @@
+@baseUrl = http://localhost:4004
+
+### Health CAP
+GET {{baseUrl}}/
+
+### Sync repository (mock ou real)
+POST {{baseUrl}}/grounding/syncRepository
+Content-Type: application/json
+
+{
+  "repositoryId": "mock-repo",
+  "folderPath": "/",
+  "limit": 20
+}
+
+### List documents
+GET {{baseUrl}}/grounding/SourceDocuments
+
+### Generate chunks (substitua o UUID)
+POST {{baseUrl}}/grounding/generateChunks
+Content-Type: application/json
+
+{
+  "documentID": "00000000-0000-0000-0000-000000000000",
+  "chunkSize": 900,
+  "overlap": 150
+}
+
+### List chunks
+GET {{baseUrl}}/grounding/DocumentChunks
+
+### Semantic search
+POST {{baseUrl}}/grounding/semanticSearch
+Content-Type: application/json
+
+{
+  "query": "como configurar destination no dms",
+  "topK": 5
+}

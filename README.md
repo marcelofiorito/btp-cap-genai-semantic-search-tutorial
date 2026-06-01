@@ -28,6 +28,7 @@ Este projeto é um exemplo básico de mecanismo de busca semântica construído 
 8. [Guia Detalhado por Etapa](docs/tutorial/Guia-Detalhado.md)
 9. [Plano de POC - Grounding com SAP DMS](docs/poc/Plano-POC-Grounding-DMS.md)
 10. [Código-fonte Explicado (Arquitetura Completa)](docs/tutorial/7-Codigo-Fonte-Explicado.md)
+11. [Nova App Isolada: DMS Grounding POC](extensions/dms-grounding-app/README.md)
 
 ## Como obter suporte
 [Abra uma issue](https://github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.

@@ -1,7 +1,7 @@
 # Aplicação CAP: Busca Semântica Integrada ao Generative AI Hub e ao Vector Engine do SAP HANA Cloud
 Exemplo básico de mecanismo de busca semântica na SAP Business Technology Platform.
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-cap-genai-semantic-search)](https://api.reuse.software/info/github.com/SAP-samples/btp-cap-genai-semantic-search)
+[![REUSE status](https://api.reuse.software/badge/github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial)](https://api.reuse.software/info/github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial)
 
 ![Diagrama](docs/reference-architecture-semantic-search.svg)
 
@@ -18,16 +18,16 @@ Este projeto é um exemplo básico de mecanismo de busca semântica construído 
 - **`ui/`**: contém componentes de frontend como views, controllers e assets com TypeScript e SAPUI5.
 
 ## Primeiros Passos
-1. [Pré-requisitos](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/1-Requirements.md)
-2. [Setup e Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md)
-3. [Modelo de Dados](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md)
-4. [Setup da UI](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/4-UI%20Setup.md)
-5. [Validação e Testes](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/5-Validation%20and%20Testing.md)
-6. [Extensões](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/6-Extend.md)
+1. [Pré-requisitos](docs/tutorial/1-Requirements.md)
+2. [Setup e Deploy](docs/tutorial/2-Setup%20and%20Deploy.md)
+3. [Modelo de Dados](docs/tutorial/3-Data%20Model.md)
+4. [Setup da UI](docs/tutorial/4-UI%20Setup.md)
+5. [Validação e Testes](docs/tutorial/5-Validation%20and%20Testing.md)
+6. [Extensões](docs/tutorial/6-Extend.md)
 7. [Log de Execução (Este Deploy)](docs/tutorial/Execution-Log.md)
 
 ## Como obter suporte
-[Abra uma issue](https://github.com/SAP-samples/btp-cap-genai-semantic-search/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.
+[Abra uma issue](https://github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.
  
 Para suporte adicional, [faça uma pergunta na SAP Community](https://answers.sap.com/questions/ask.html).
 

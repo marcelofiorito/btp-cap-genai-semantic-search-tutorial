@@ -5,7 +5,7 @@ Para começar com este projeto, siga os passos abaixo:
 
 1. Clone este repositório.
    ```bash
-   git clone https://github.com/SAP-samples/btp-cap-genai-semantic-search.git
+   git clone https://github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial.git
    ```
 2. Entre no diretório do projeto.
    ```bash

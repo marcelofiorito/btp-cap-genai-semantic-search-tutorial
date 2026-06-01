@@ -1,7 +1,7 @@
 # Aplicação CAP: Busca Semântica Integrada ao Generative AI Hub e ao Vector Engine do SAP HANA Cloud
 Exemplo básico de mecanismo de busca semântica na SAP Business Technology Platform.
 
-![Arquitetura](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/architecture.png)
+![Arquitetura](../reference-architecture-semantic-search.svg)
 
 ## **Descrição**
 Este projeto é um exemplo básico de mecanismo de busca semântica construído na SAP BTP. Ele utiliza o modelo CAP e integra o Generative AI Hub com o Vector Engine do SAP HANA Cloud para oferecer recursos de busca escaláveis e poderosos.

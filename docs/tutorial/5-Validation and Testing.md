@@ -4,7 +4,7 @@ Nesta seção, você cria dados de teste, valida o backend com requisições de 
 
 ### Testar o Backend
 
-Como explicado em [Setup and Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md), após configurar os dados de UAA com a Service Key da instância `genai-semantic-search-sample-uaa`, você pode testar o backend enviando requisições. Referência: `api/test/requests.sample.http`.
+Como explicado em [Setup e Deploy](2-Setup%20and%20Deploy.md), após configurar os dados de UAA com a Service Key da instância `genai-semantic-search-sample-uaa`, você pode testar o backend enviando requisições. Referência: `api/test/requests.sample.http`.
 
 #### Iniciar a aplicação
 
@@ -50,7 +50,7 @@ Authorization: Bearer {{token}}
 
 Para avaliar busca semântica, popule o banco com dados variados. Cada registro é transformado em embedding vetorial para busca por similaridade.
 
-Use como base o schema de [Data Model](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md) e envie requisições como a seguir:
+Use como base o schema de [Modelo de Dados](3-Data%20Model.md) e envie requisições como a seguir:
 
 ```
 ### CREATE DATA AND CALCULATE EMBEDDINGS FOR THE "TEXT" ATTRIBUTE
@@ -96,7 +96,7 @@ Após validar o backend e criar dados de teste:
 
 A aplicação exibirá uma página com barra de busca.
 
-![Initial Page](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/semantic_search_initial_page.png "Initial Page")
+![Initial Page](../semantic_search_initial_page.png "Initial Page")
 
 2. Faça uma busca semântica:
 - Pesquise tópicos como AI, Health, Science, Technology, Space etc.
@@ -114,17 +114,17 @@ Exemplos:
 - O título da tabela mostra a quantidade de resultados.
 - Ao lado do título, o tooltip com `?` exibe a query SQL gerada.
 
-![Search Results](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/search_results_ui.png "Search Results Overview")
+![Search Results](../search_results_ui.png "Search Results Overview")
 
 3. Refinar a busca:
 - Digite informações adicionais na barra.
 - Ao executar novamente, o texto pode ser reformulado e exibido em message strip.
 - A tabela será atualizada com os novos resultados.
 
-![Message Strip](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/reformulation_search_msg_strip.png "Reformulated Text")
+![Message Strip](../reformulation_search_msg_strip.png "Reformulated Text")
 
 4. Verificar melhorias da busca:
 - Extração de idioma: pesquise em outro idioma (ex.: espanhol) e confira no tooltip `WHERE LANGUAGE='ES'`.
 - Extração de data: pesquise algo como “documentos de saúde do ano passado” e valide o intervalo de datas no `WHERE`.
 
-![Sql Query](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/search_query_overview.png "Search Query Overview")
+![Sql Query](../search_query_overview.png "Search Query Overview")

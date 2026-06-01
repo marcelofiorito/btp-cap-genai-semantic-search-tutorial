@@ -25,6 +25,7 @@ Este projeto é um exemplo básico de mecanismo de busca semântica construído 
 5. [Validação e Testes](docs/tutorial/5-Validation%20and%20Testing.md)
 6. [Extensões](docs/tutorial/6-Extend.md)
 7. [Log de Execução (Este Deploy)](docs/tutorial/Execution-Log.md)
+8. [Guia Detalhado por Etapa](docs/tutorial/Guia-Detalhado.md)
 
 ## Como obter suporte
 [Abra uma issue](https://github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.

@@ -1,21 +1,21 @@
-**Prerequisites:** 
-Make sure you have [Node.js](https://nodejs.org/) (v21+ recommended) installed.
+**Pré-requisitos:**
+Garanta que o [Node.js](https://nodejs.org/) (recomendado v21+) esteja instalado.
 
-**Setup and Run the UI Locally:**
-1. Navigate to the `ui` folder.
+**Configurar e rodar a UI localmente:**
+1. Entre na pasta `ui`.
     ```bash
     cd ui
     ```
-2. Install the dependencies (node_modules).
+2. Instale as dependências (`node_modules`).
     ```bash
     npm install
     ```
-3. Return to the root folder and start the application. This will start both the backend and frontend.
+3. Volte para a raiz e inicie a aplicação (backend + frontend).
     ```bash
     cd .. && npm run watch
     ```
-4. Once the application has started, it will automatically open the correct URL in your browser:
+4. Após iniciar, a URL correta será aberta automaticamente no navegador:
     ```bash
     http://localhost:5000/index.html
     ```
-    This route is handled by the AppRouter, which performs authentication and proxies requests to the frontend (8080) and backend (4040) services accordingly.
+    Essa rota é tratada pelo AppRouter, que autentica e faz proxy para frontend (8080) e backend (4040).

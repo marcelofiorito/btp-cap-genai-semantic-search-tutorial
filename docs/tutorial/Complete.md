@@ -1,7 +1,7 @@
-Congratulations! You and your team have completed this mission. 
+Parabéns! Você e seu time concluíram esta missão.
 
-To formally complete the mission, please go to the [SAP Discovery Center, Control Center](https://discovery-center.cloud.sap/protected/index.html#/mymissions/).
+Para concluir formalmente, acesse o [SAP Discovery Center, Control Center](https://discovery-center.cloud.sap/protected/index.html#/mymissions/).
 
-We'd love to hear your feedback on the entire project so that we may continue to improve our offering to you.
+Seu feedback sobre o projeto é muito importante para continuarmos melhorando.
 
-See you on your next mission.
+Nos vemos na próxima missão.

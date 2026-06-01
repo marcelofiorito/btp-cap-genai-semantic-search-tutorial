@@ -1,101 +1,95 @@
-# UI5 Application com.sap.search.engine
+# Aplicação UI5 com.sap.search.engine
 
-Insert the purpose of this project and some interesting info here...
+Insira aqui o objetivo deste projeto e informações relevantes.
 
-## Description
+## Descrição
 
-This app demonstrates a TypeScript setup for developing UI5 applications. The central entry point for all information about using TypeScript with UI5 is at [https://sap.github.io/ui5-typescript](https://sap.github.io/ui5-typescript).
+Esta aplicação demonstra um setup TypeScript para desenvolvimento de aplicações UI5. O ponto central de referência sobre TypeScript com UI5 está em [https://sap.github.io/ui5-typescript](https://sap.github.io/ui5-typescript).
 
-**The template is inspired by the [`SAP-samples/ui5-typescript-helloworld`](https://github.com/SAP-samples/ui5-typescript-helloworld) project which also contains [a detailed step-by-step guide](https://github.com/SAP-samples/ui5-typescript-helloworld/blob/main/step-by-step.md). It explains how this setup is created and how all the bits and pieces fit together.**
+**O template é inspirado no projeto [`SAP-samples/ui5-typescript-helloworld`](https://github.com/SAP-samples/ui5-typescript-helloworld), que também contém [um guia detalhado passo a passo](https://github.com/SAP-samples/ui5-typescript-helloworld/blob/main/step-by-step.md).**
 
-## Requirements
+## Requisitos
 
-Either [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) for dependency management.
+Use [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/) para gerenciamento de dependências.
 
-## Preparation
+## Preparação
 
-Use `npm` (or `yarn`) to install the dependencies:
+Instale dependências com `npm` (ou `yarn`):
 
 ```sh
 npm install
 ```
 
-(To use yarn, just do `yarn` instead.)
+(Se usar yarn, rode apenas `yarn`.)
 
-## Run the App
+## Executar a aplicação
 
-Execute the following command to run the app locally for development in watch mode (the browser reloads the app automatically when there are changes in the source code):
+Rode o comando abaixo para desenvolvimento em modo watch (o navegador recarrega automaticamente ao detectar mudanças):
 
 ```sh
 npm start
 ```
 
-As shown in the terminal after executing this command, the app is then running on http://localhost:8080/index.html. A browser window with this URL should automatically open.
+A aplicação ficará disponível em `http://localhost:8080/index.html`.
 
-(When using yarn, do `yarn start` instead.)
+(Com yarn, use `yarn start`.)
 
-## Debug the App
+## Debug da aplicação
 
-In the browser, you can directly debug the original TypeScript code, which is supplied via sourcemaps (need to be enabled in the browser's developer console if it does not work straight away). If the browser doesn't automatically jump to the TypeScript code when setting breakpoints, use e.g. `Ctrl`/`Cmd` + `P` in Chrome to open the `*.ts` file you want to debug.
+No navegador, você pode depurar o TypeScript original via sourcemaps (habilite no DevTools se necessário). Se o navegador não abrir automaticamente o arquivo TypeScript ao criar breakpoints, use `Ctrl`/`Cmd` + `P` no Chrome para abrir o arquivo `*.ts` desejado.
 
-## Build the App
+## Build da aplicação
 
-### Unoptimized (but quick)
-
-Execute the following command to build the project and get an app that can be deployed:
+### Não otimizado (mais rápido)
 
 ```sh
 npm run build
 ```
 
-The result is placed into the `dist` folder. To start the generated package, just run
+O resultado vai para `dist`. Para iniciar o pacote gerado:
 
 ```sh
 npm run start:dist
 ```
 
-Note that `index.html` still loads the UI5 framework from the relative URL `resources/...`, which does not physically exist, but is only provided dynamically by the UI5 tooling. So for an actual deployment you should change this URL to either [the CDN](https://sdk.openui5.org/#/topic/2d3eb2f322ea4a82983c1c62a33ec4ae) or your local deployment of UI5.
+Observação: `index.html` ainda referencia `resources/...` de forma relativa, que é servido dinamicamente pelo UI5 tooling. Para deploy real, ajuste para CDN ou sua distribuição local de UI5.
 
-(When using yarn, do `yarn build` and `yarn start:dist` instead.)
+(Com yarn: `yarn build` e `yarn start:dist`.)
 
-### Optimized
+### Otimizado
 
-For an optimized self-contained build (takes longer because the UI5 resources are built, too), do:
+Para build otimizado e autocontido (mais demorado):
 
 ```sh
 npm run build:opt
 ```
 
-To start the generated package, again just run:
+Para iniciar:
 
 ```sh
 npm run start:dist
 ```
 
-In this case, all UI5 framework resources are also available within the `dist` folder, so the folder can be deployed as-is to any static web server, without changing the bootstrap URL.
+Nesse caso, os recursos UI5 necessários ficam disponíveis em `dist`, permitindo deploy em servidor estático.
 
-With the self-contained build, the bootstrap URL in `index.html` has already been modified to load the newly created `sap-ui-custom.js` for bootstrapping, which contains all app resources as well as all needed UI5 JavaScript resources. Most UI5 resources inside the `dist` folder are for this reason actually **not** needed to run the app. Only the non-JS-files, like translation texts and CSS files, are used and must also be deployed. (Only when for some reason JS files are missing from the optimized self-contained bundle, they are also loaded separately.)
+(Com yarn: `yarn build:opt` e `yarn start:dist`.)
 
-(When using yarn, do `yarn build:opt` and `yarn start:dist` instead.)
+## Verificar o código
 
-## Check the Code
-
-Do the following to run a TypeScript check:
+Para validar tipos TypeScript:
 
 ```sh
 npm run ts-typecheck
 ```
 
-This checks the application code for any type errors (but will also complain in case of fundamental syntax issues which break the parsing).
-
-To lint the TypeScript code, do:
+Para lint:
 
 ```sh
 npm run lint
 ```
 
-(Again, when using yarn, do `yarn ts-typecheck` and `yarn lint` instead.)
+(Com yarn: `yarn ts-typecheck` e `yarn lint`.)
 
-## License
+## Licença
 
-This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+Este projeto está licenciado sob Apache Software License, versão 2.0, exceto quando indicado de outra forma no arquivo [LICENSE](LICENSE).

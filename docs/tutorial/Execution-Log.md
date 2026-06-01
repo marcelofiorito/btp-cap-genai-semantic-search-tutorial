@@ -1,97 +1,97 @@
-# Execution Log - Tutorial Steps (SAP Presales BR - USA)
+# Log de Execução - Etapas do Tutorial (SAP Presales BR - USA)
 
-This file documents what was effectively executed for each tutorial step in this repository deployment.
+Este arquivo documenta o que foi efetivamente executado em cada etapa do tutorial neste deploy.
 
-## Step 1 - Requirements
+## Etapa 1 - Pré-requisitos
 
-Status: Completed
+Status: Concluída
 
-What was validated:
+Validações realizadas:
 
-- Node.js, npm, git, Cloud Foundry CLI, MBT, and CDS CLI are available locally.
-- Cloud Foundry target was switched to:
+- Node.js, npm, git, Cloud Foundry CLI, MBT e CDS CLI disponíveis localmente.
+- Target do Cloud Foundry alterado para:
   - Org: `SAP Presales Brazil - BTP_sap-presales-br-usa`
   - Space: `DEV`
-- AI Core `extended` plan is available and running in this subaccount.
-- SAP HANA (`hdi-shared`) and Destination (`lite`) services required by this sample are available.
+- AI Core com plano `extended` disponível e ativo na subconta.
+- Serviços SAP HANA (`hdi-shared`) e Destination (`lite`) disponíveis.
 
-## Step 2 - Setup and Deploy
+## Etapa 2 - Setup e Deploy
 
-Status: Completed
+Status: Concluída
 
-What was executed:
+Execuções:
 
-- `npm install` in root and modules.
-- Build and deploy pipeline:
+- `npm install` na raiz e módulos.
+- Pipeline de build e deploy:
   - `npm run build`
   - `npm run deploy`
-- Existing MTA resources/apps were updated in place:
+- Recursos/apps MTA atualizados no mesmo ambiente:
   - `genai-semantic-search-sample-DEV`
   - `genai-semantic-search-sample-srv-DEV`
   - `genai-semantic-search-sample-db-deployer-DEV`
 
-Additional fixes applied to make deployment reliable:
+Ajustes técnicos aplicados para estabilidade do deploy:
 
-- `router/package.json` engine updated to `^20.x` to match CF buildpack runtime.
-- TypeScript shim added for CAP typing compatibility:
+- Engine em `router/package.json` atualizada para `^20.x`.
+- Shim TypeScript para compatibilidade CAP:
   - `api/srv/cds-shim.d.ts`
-- Minor typing adjustments in service handler signatures:
+- Ajustes de tipagem em handlers de serviço:
   - `api/srv/sample.ts`
 
-## Step 3 - Data Model
+## Etapa 3 - Modelo de Dados
 
-Status: Completed (as provided by sample)
+Status: Concluída (conforme sample)
 
-What was validated:
+Validações:
 
-- HANA schema artifacts were generated during `cds build` and deployed via DB deployer.
-- `cds.Vector` model is active in HANA target (semantic embedding storage).
+- Artefatos HANA gerados no `cds build` e aplicados via DB deployer.
+- Tipo `cds.Vector` ativo no target HANA (armazenamento de embeddings).
 
-## Step 4 - UI Setup
+## Etapa 4 - Setup da UI
 
-Status: Completed
+Status: Concluída
 
-What was executed:
+Execuções:
 
-- UI module build completed as part of `npm run build`.
-- AppRouter route is active and published.
+- Build da UI concluído no `npm run build`.
+- Rota do AppRouter publicada e ativa.
 
-Published URL:
+URL publicada:
 
 - `https://sap-presales-brazil---btp-sap-presales-br-usa-dev-genai73ca7346.cfapps.us10.hana.ondemand.com/index.html`
 
-## Step 5 - Validation and Testing
+## Etapa 5 - Validação e Testes
 
-Status: Completed
+Status: Concluída
 
-What was executed and validated:
+Validações executadas:
 
-- XSUAA token retrieval succeeded.
-- Backend tests succeeded:
-  - `POST /odata/v4/sample/embed` returned `true`.
-  - `POST /odata/v4/sample/search` returned semantic results with similarity score.
-  - `GET /odata/v4/sample/Documents` returned persisted records.
-- UI validation succeeded (semantic search screen operational and results visible).
+- Geração de token XSUAA funcionando.
+- Testes de backend com sucesso:
+  - `POST /odata/v4/sample/embed` retornou `true`.
+  - `POST /odata/v4/sample/search` retornou resultados semânticos com score de similaridade.
+  - `GET /odata/v4/sample/Documents` retornou registros persistidos.
+- Validação de UI concluída (tela operacional com resultados visíveis).
 
-Important runtime binding performed:
+Bind de runtime importante:
 
-- `aicore` service was explicitly bound to `genai-semantic-search-sample-srv-DEV`.
+- Serviço `aicore` vinculado explicitamente ao app `genai-semantic-search-sample-srv-DEV`.
 
-## Step 6 - Extend
+## Etapa 6 - Extensões
 
-Status: Not executed by design
+Status: Não executada por decisão
 
-Reason:
+Motivo:
 
-- Per user request, no extension implementation was started yet.
-- Only conceptual explanation of Step 6 scope was provided (complex data model/testing and advanced scoring/search options).
+- A pedido do usuário, nenhuma implementação de extensão foi iniciada.
+- Apenas explicação conceitual da etapa 6 foi fornecida.
 
-## Local Development Notes
+## Notas de Desenvolvimento Local
 
-- Local credential files remain intentionally untracked by git:
+- Arquivos locais com credenciais continuam fora do git:
   - `router/dev/default-services.json`
   - `api/test/requests.http`
-- Hybrid profile bindings were refreshed with:
+- Binds do profile híbrido atualizados com:
   - `cds bind -2 genai-semantic-search-sample-uaa`
   - `cds bind -2 genai-semantic-search-sample-destination`
   - `cds bind -2 genai-semantic-search-sample-hdi-container`

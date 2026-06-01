@@ -1,37 +1,36 @@
-# **Setup and Deployment Guide**
+# **Guia de Setup e Deploy**
 
-### **Cloning the Repository**
-To start with this project, follow these steps:
+### **Clonando o Repositório**
+Para começar com este projeto, siga os passos abaixo:
 
-1. Clone this repository.
+1. Clone este repositório.
    ```bash
    git clone https://github.com/SAP-samples/btp-cap-genai-semantic-search.git
    ```
-2. Navigate to the project directory.
+2. Entre no diretório do projeto.
    ```bash
    cd btp-cap-genai-semantic-search
    ```
-### **Prepare for Deployment**
 
-1. [Create an instance of SAP AI Core:](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-service-instance) and make sure to choose the service plan `extended` to activate Generative AI Hub and continue [creating a Service Key](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-service-key). When setting up the SAP AI Core instance, a default resource group named "default" will be automatically created. Please select this as the resource group ID for the subsequent step.
+### **Preparação para Deploy**
 
-2. [Create deployments:](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-deployment-for-generative-ai-model-in-sap-ai-core)
+1. [Crie uma instância do SAP AI Core](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-service-instance) com plano `extended` para habilitar o Generative AI Hub e depois [crie uma Service Key](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-service-key). Ao configurar o SAP AI Core, um resource group padrão chamado `default` é criado automaticamente. Use esse resource group nos próximos passos.
 
-   - Using the `orchestration` scenario, choose a model that supports Chat Completions, such as `gpt-4o` (recommended).       The orchestration scenario allows structured prompt/response handling without manual parsing.
-     
-   - Create an additional deployment using the embedding model, such as:
+2. [Crie os deployments](https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/create-deployment-for-generative-ai-model-in-sap-ai-core):
 
-      - text-embedding-3-small (lightweight)
-      - text-embedding-3-large (higher quality)
-        
-   All available models are listed [here](https://me.sap.com/notes/3437766). 
+   - Usando o cenário `orchestration`, escolha um modelo com suporte a Chat Completions, como `gpt-4o` (recomendado).
+   - Crie também um deployment para embeddings, como:
+      - `text-embedding-3-small` (mais leve)
+      - `text-embedding-3-large` (maior qualidade)
 
-4. [Create a Destination:](https://help.sap.com/docs/btp/sap-business-technology-platform/create-destination) for Generative AI Hub in the SAP BTP Cockpit of your Subaccount based on the Service Key of SAP AI Core you created in the previous step:
+   Modelos disponíveis: [SAP Note 3437766](https://me.sap.com/notes/3437766).
+
+3. [Crie uma Destination](https://help.sap.com/docs/btp/sap-business-technology-platform/create-destination) para o Generative AI Hub no SAP BTP Cockpit da subconta, com base na Service Key do SAP AI Core:
 
    ```yaml
    Name: GENERATIVE_AI_HUB
    Description: SAP AI Core deployed service (generative AI hub)
-   URL: <AI-API-OF-AI-CORE-SERVICE-KEY>/v2 # make sure to add /v2!
+   URL: <AI-API-OF-AI-CORE-SERVICE-KEY>/v2 # obrigatorio adicionar /v2
    Type: HTTP
    ProxyType: Internet
    Authentication: OAuth2ClientCredentials
@@ -39,45 +38,53 @@ To start with this project, follow these steps:
    clientId: <YOUR-CLIENT-ID-OF-AI-CORE-SERVICE-KEY>
    clientSecret: <YOUR-CLIENT-SECRET-OF-AI-CORE-SERVICE-KEY>
    # Additional Properties:
-   URL.headers.AI-Resource-Group: default # adjust if necessary
+   URL.headers.AI-Resource-Group: default # ajuste se necessario
    URL.headers.Content-Type: application/json
    HTML5.DynamicDestination: true
-   ````
-5. [Create SAP HANA Cloud instance:](https://help.sap.com/docs/HANA_CLOUD_ALIBABA_CLOUD/683a53aec4fc408783bbb2dd8e47afeb/7d4071a49c204dfc9e542c5e47b53156.html) with Vector Engine (QRC 1/2024 or later). Starting with this release, Vector Engine is automatically enabled; manual activation is not required.
-
-### **Deployment**
-
-> ℹ️ **Note:**
-> Make sure [TypeScript support is enabled](https://cap.cloud.sap/docs/node.js/typescript), otherwise run `npm i -g typescript ts-node`
-
-1. Run `npm install` or `yarn install` in `api` directory to install project specific dependencies.
-2. Navigate to the root folder and run `npm run build` or `yarn build` to build the mta.yaml file. 
-4. Login to your subaccount with [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), running `cf login`.
-5. Run `npm run deploy` or `yarn deploy` on CLI to deploy the API to your Subaccount. After deployment, you will find the following instances created under "Services -> Instances" in BTP:
-   ```yaml
-   genai-semantic-search-sample-uaa    
-   genai-semantic-search-sample-destination
-   genai-semantic-search-sample-hdi-container
    ```
-### **Development**
 
-> ℹ️ **Note:**
-> Make sure [TypeScript support is enabled](https://cap.cloud.sap/docs/node.js/typescript), otherwise run `npm i -g typescript ts-node`
+4. [Crie uma instância SAP HANA Cloud](https://help.sap.com/docs/HANA_CLOUD_ALIBABA_CLOUD/683a53aec4fc408783bbb2dd8e47afeb/7d4071a49c204dfc9e542c5e47b53156.html) com Vector Engine (QRC 1/2024 ou superior). Nessa versão o Vector Engine já vem habilitado.
 
-1. Navigate to `router` directory and run `npm install` or `yarn install` to install project specific dependencies.
-2. Login to your subaccount with [Cloud Foundry CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html), running `cf login`.
-3. [Bind services for hybrid testing](https://cap.cloud.sap/docs/advanced/hybrid-testing) and development (create Service Keys if necessary).
-   ```yaml
-   cd api # make sure to execute in the api directory
-   cds bind -2 genai-semantic-search-sample-uaa
-   cds bind -2 genai-semantic-search-sample-destination
-   cds bind -2 genai-semantic-search-sample-hdi-container
-   cds bind -2 <NAME-OF-YOUR-AI-CORE-INSTANCE>
-   ```
-   After the services are bound successfuly, `api/.cdsrc-private.json` should exist with the `hybrid` profile.
-4. Duplicate `router/dev/default-services.sapmple.json` to `router/dev/default-services.json` and enter the 'url', 'clientid' and 'clientsecret' from the UAA instance previously created in BTP.
-5. Run npm run `watch:api` or yarn `watch:api` from project root to start CAP backend.
-6. Duplicate `api/test/requests.sample.http` to `api/test/requests.http` and enter UAA details from the Service Key of the `genai-semantic-search-sample-uaa`. These requests will be utilized for testing in subsequent steps.
+### **Deploy**
 
-### Notes:
+> ℹ️ **Nota:**
+> Garanta que o suporte a TypeScript esteja habilitado no CAP. Se necessário, rode `npm i -g typescript ts-node`.
+
+1. Rode `npm install` (ou `yarn install`) na pasta `api`.
+2. Volte para a raiz e rode `npm run build` (ou `yarn build`) para gerar o MTAR.
+3. Faça login na subconta com o Cloud Foundry CLI (`cf login`).
+4. Rode `npm run deploy` (ou `yarn deploy`) para publicar na subconta.
+
+Após o deploy, você verá as instâncias abaixo em **Services -> Instances**:
+
+```yaml
+genai-semantic-search-sample-uaa
+genai-semantic-search-sample-destination
+genai-semantic-search-sample-hdi-container
+```
+
+### **Desenvolvimento**
+
+> ℹ️ **Nota:**
+> Garanta que o suporte a TypeScript esteja habilitado no CAP. Se necessário, rode `npm i -g typescript ts-node`.
+
+1. Entre na pasta `router` e rode `npm install` (ou `yarn install`).
+2. Faça login no Cloud Foundry (`cf login`).
+3. Faça bind dos serviços para modo híbrido (crie Service Keys se necessário):
+
+```yaml
+cd api # execute na pasta api
+cds bind -2 genai-semantic-search-sample-uaa
+cds bind -2 genai-semantic-search-sample-destination
+cds bind -2 genai-semantic-search-sample-hdi-container
+cds bind -2 <NOME-DA-SUA-INSTANCIA-AI-CORE>
+```
+
+Após os binds, o arquivo `api/.cdsrc-private.json` deve existir com o profile `hybrid`.
+
+4. Duplique `router/dev/default-services.sample.json` para `router/dev/default-services.json` e preencha `url`, `clientid` e `clientsecret` da instância UAA criada.
+5. Rode `npm run watch:api` (ou `yarn watch:api`) na raiz para iniciar o backend CAP.
+6. Duplique `api/test/requests.sample.http` para `api/test/requests.http` e preencha os dados do UAA via Service Key de `genai-semantic-search-sample-uaa`.
+
+### Notas
 * **Cloud Foundry Login**: `cf login -a API_ENDPOINT -o ORG_NAME`

@@ -1,21 +1,21 @@
-### Advanced Extensions for the Semantic Search Engine
+### Extensões Avançadas para o Mecanismo de Busca Semântica
 
-The semantic search can be enhanced in the following ways:
+A busca semântica pode ser aprimorada das seguintes formas:
 
-#### 1. Complex Data Testing
-Currently, the data model of the CAP application is tailored for testing the semantic search on a single table. This could be extended to more complex tables to ensure a comprehensive search experience. Consider:
+#### 1. Testes com Dados Mais Complexos
+Atualmente, o modelo de dados CAP está ajustado para testar busca semântica em uma única tabela. Isso pode ser expandido para tabelas mais complexas, garantindo uma experiência mais completa. Considere:
 
-- Testing with larger and more intricate data sets.
-- Creating and uploading additional tables with more relationships.
-- Updating the UI and search logic to handle more complex queries.
-- Add more documents with different languages
+- Testar com datasets maiores e mais complexos.
+- Criar e carregar tabelas adicionais com mais relacionamentos.
+- Atualizar UI e lógica de busca para consultas mais complexas.
+- Adicionar mais documentos em diferentes idiomas.
 
-#### 2. Advanced Search Features
-Enhance the search capabilities to allow searching within a specific range of pages or for documents with an exact number of pages. Use the HANA `SCORE` function to find the closest match. Here's an example of scoring logic:
+#### 2. Recursos Avançados de Busca
+Aprimore a busca para permitir pesquisa por faixa de páginas ou por número exato de páginas. Use a função `SCORE` do HANA para encontrar a correspondência mais próxima. Exemplo:
 
 ```javascript
 const parts = attrMapping.map(item => `Score('${item.include}' in ${item.attribute} LINEAR SCALE 1)`);
 return `(${parts.join(' + ')}) / ${attrMapping.length}`;
 ```
 
-By incorporating these enhancements, the search engine application will be more versatile and provide more accurate results.
+Com esses aprimoramentos, a aplicação de busca semântica fica mais versátil e com resultados mais precisos.

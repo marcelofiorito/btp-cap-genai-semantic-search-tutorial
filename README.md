@@ -1,38 +1,38 @@
-# CAP Application: Semantic Search Integrated with Generative AI Hub and SAP HANA Cloud's Vector Engine
-Basic sample for semantic search engine on SAP Business Technology Platform
+# Aplicação CAP: Busca Semântica Integrada ao Generative AI Hub e ao Vector Engine do SAP HANA Cloud
+Exemplo básico de mecanismo de busca semântica na SAP Business Technology Platform.
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-cap-genai-semantic-search)](https://api.reuse.software/info/github.com/SAP-samples/btp-cap-genai-semantic-search)
 
-![Diagram](docs/reference-architecture-semantic-search.svg)
+![Diagrama](docs/reference-architecture-semantic-search.svg)
 
-## **Description**
-This project is a basic sample for a semantic search engine built on SAP Business Technology Platform (BTP). It uses the Cloud Application Programming (CAP) model and integrates Generative AI Hub and SAP HANA Cloud’s Vector Engine to offer scalable and powerful search capabilities.
+## **Descrição**
+Este projeto é um exemplo básico de mecanismo de busca semântica construído na SAP BTP. Ele utiliza o modelo Cloud Application Programming (CAP) e integra o Generative AI Hub com o Vector Engine do SAP HANA Cloud para oferecer recursos de busca escaláveis e poderosos.
 
-**Key Features:**
-- Semantic search powered by SAP HANA Cloud's Vector Engine.
-- Generative AI integration using the Generative AI Hub.
-- Modular structure with a CAP backend and SAPUI5 frontend.
+**Principais Recursos:**
+- Busca semântica com o Vector Engine do SAP HANA Cloud.
+- Integração de IA generativa via Generative AI Hub.
+- Estrutura modular com backend CAP e frontend SAPUI5.
 
-### **Project Structure**
-- **`api/`**: Contains backend logic, data models, service definitions, and business logic.
-- **`ui/`**: Contains frontend components like views, controllers, and assets using TypeScript and SAPUI5.
+### **Estrutura do Projeto**
+- **`api/`**: contém lógica de backend, modelos de dados, definições de serviço e regras de negócio.
+- **`ui/`**: contém componentes de frontend como views, controllers e assets com TypeScript e SAPUI5.
 
-## Getting Started
-1. [Requirements](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/1-Requirements.md)
-2. [Setup and Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md)
-3. [Data Model](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md)
-4. [UI Setup](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/4-UI%20Setup.md)
-5. [Validation and Testing](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/5-Validation%20and%20Testing.md)
-6. [Extend](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/6-Extend.md)
-7. [Execution Log (This Deployment)](docs/tutorial/Execution-Log.md)
+## Primeiros Passos
+1. [Pré-requisitos](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/1-Requirements.md)
+2. [Setup e Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md)
+3. [Modelo de Dados](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md)
+4. [Setup da UI](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/4-UI%20Setup.md)
+5. [Validação e Testes](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/5-Validation%20and%20Testing.md)
+6. [Extensões](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/6-Extend.md)
+7. [Log de Execução (Este Deploy)](docs/tutorial/Execution-Log.md)
 
-## How to obtain support
-[Create an issue](https://github.com/SAP-samples/btp-cap-genai-semantic-search/issues) in this repository if you find a bug or have questions about the content.
+## Como obter suporte
+[Abra uma issue](https://github.com/SAP-samples/btp-cap-genai-semantic-search/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.
  
-For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
+Para suporte adicional, [faça uma pergunta na SAP Community](https://answers.sap.com/questions/ask.html).
 
-## Contributing
-If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
+## Contribuição
+Se quiser contribuir com código, correções ou melhorias, envie um pull request. Por motivos legais, os contribuidores deverão aceitar o DCO ao criar o primeiro pull request neste projeto. Isso ocorre de forma automática durante o processo de submissão. A SAP usa [o texto padrão de DCO da Linux Foundation](https://developercertificate.org/).
 
-## License
-Copyright (c) 2024 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+## Licença
+Copyright (c) 2024 SAP SE ou empresa afiliada da SAP. Todos os direitos reservados. Este projeto está licenciado sob a Apache Software License, versão 2.0, exceto quando indicado de outra forma no arquivo [LICENSE](LICENSE).

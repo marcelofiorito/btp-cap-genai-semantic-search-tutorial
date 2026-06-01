@@ -1,26 +1,26 @@
-## Validation and Testing
+## Validação e Testes
 
-In this section, you'll learn how to create test data using requests, test the backend with API requests, and validate the application's functionality via the UI.
+Nesta seção, você cria dados de teste, valida o backend com requisições de API e confirma o comportamento da aplicação pela UI.
 
-### Test the Backend
+### Testar o Backend
 
-As explained in the [Setup and Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md) section, after configuring the UAA details from the Service Key of the `genai-semantic-search-sample-uaa` instance, you can test the backend by sending requests. Use as reference: `api/test/requests.sample.http`
+Como explicado em [Setup and Deploy](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/2-Setup%20and%20Deploy.md), após configurar os dados de UAA com a Service Key da instância `genai-semantic-search-sample-uaa`, você pode testar o backend enviando requisições. Referência: `api/test/requests.sample.http`.
 
-#### Start the Application
+#### Iniciar a aplicação
 
-Run this command in the root folder:
+Rode na raiz:
 
 ```bash
 npm run watch
 ```
 
-#### Install REST Client or Postman
+#### Instalar REST Client ou usar Postman
 
-If you are working in Visual Studio Code, install the REST Client extension; otherwise, you can use Postman to send the requests.
+Se estiver no VS Code, instale a extensão REST Client. Caso contrário, use Postman.
 
-#### Obtain an XSUAA Token
+#### Obter token XSUAA
 
-To access the API securely, you'll need to obtain an authentication token. Use this POST request to retrieve the token:
+Para acessar a API com segurança, obtenha um token via POST:
 
 ```
 ### GET XSUAA TOKEN
@@ -33,10 +33,11 @@ Authorization: Basic {{btpXsuaaClient}}:{{btpXsuaaSecret}}
 client_id={{btpXsuaaClient}}
 &client_secret={{btpXsuaaSecret}}
 &grant_type=client_credentials
-````
-#### Fetch Documents
+```
 
-After obtaining the token, use it to make an authorized request to fetch documents. Even if there are no documents initially, this test will verify that the backend is operational.
+#### Buscar documentos
+
+Com o token, envie a requisição autorizada para validar se o backend está operante:
 
 ```
 ### FETCH DOCUMENTS
@@ -45,13 +46,14 @@ GET {{btpAppHostname}}/odata/v4/sample/Documents
 Authorization: Bearer {{token}}
 ```
 
-#### Create Test Data
+#### Criar dados de teste
 
-To evaluate the semantic search capabilities, it is important to populate the database with a diverse and sufficiently large set of documents. Each entry is embedded as a vector, enabling similarity-based retrieval during search. 
-You can generate test entries using the schema defined in the [Data Model](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md). Use the following example POST request from the `requests.http` file (You can use tools like the REST Client in VS Code, Postman, or a script to send multiple requests):
+Para avaliar busca semântica, popule o banco com dados variados. Cada registro é transformado em embedding vetorial para busca por similaridade.
+
+Use como base o schema de [Data Model](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/tutorial/3-Data%20Model.md) e envie requisições como a seguir:
 
 ```
-### CREATE DATA AND CALCULATE EMBEDDINGS FOR THE "Text" ATTRIBUTE
+### CREATE DATA AND CALCULATE EMBEDDINGS FOR THE "TEXT" ATTRIBUTE
 # @name embed1
 POST {{btpAppHostname}}/odata/v4/sample/embed
 content-type: application/json
@@ -61,11 +63,14 @@ Authorization: Bearer {{token}}
   "data": "{\"text\":\"Artificial Intelligence (AI) has seamlessly integrated into our daily routines, from smart assistants to personalized recommendations. This article explores how AI has transformed everyday life.\", \"title\":\"AI Everyday: The Integration of Artificial Intelligence into Daily Life\", \"author\":\"Megan Lee\", \"date\":\"2018-07-12\", \"summary\":\"An overview of how artificial intelligence has become a fundamental part of our daily routines, improving efficiency and personalization.\", \"category\":\"Technology\", \"tags\":[\"AI\", \"technology\", \"daily life\", \"smart technology\"], \"language\":\"EN\", \"publication\":\"Tech Today\", \"rights\":\"All rights reserved.\"}"
 }
 ```
-Repeat this request with different content to insert multiple documents. For optimal testing, aim to create at least 15–20 varied entries across different topics, languages, and publication dates.
 
-In order to confirm that you have the created data, you can either send the fetch request again and confirm there are documents retrieved or use the SAP Database Explorer tool. You can access it within your SAP HANA Cloud instance in SAP BTP Cockpit by navigating to the instance where your data is stored. In the 'Actions' column, click the three dots and select "Open in SAP HANA Database Explorer".
+Repita com conteúdos diferentes para inserir vários documentos. Para um teste melhor, use ao menos 15-20 entradas variadas.
 
-Once you have verified that the corresponding table contains data, you can test the search request:
+Para confirmar os dados:
+- rode `fetchDocuments` novamente; ou
+- use o SAP HANA Database Explorer no BTP Cockpit.
+
+Depois, teste a busca:
 
 ```
 ### SEARCH
@@ -79,62 +84,47 @@ Authorization: Bearer {{token}}
 }
 ```
 
-For creating larger datasets you might use other tools to create random data sets such as:
-
-- [kaggle](https://www.kaggle.com/)
+Para datasets maiores, você pode usar ferramentas como:
+- [Kaggle](https://www.kaggle.com/)
 - [Mockaroo](https://www.mockaroo.com/)
 
-These samples requests are included in api/test/requests.sample.http which you have duplicated and renamed as requests.sample.http as explained in [Development](https://github.com/SAP-samples/btp-cap-genai-rag/tree/cap-genaihub-vectorengine-sample#Development) section of the reference project.
+### Testar a UI
 
+Após validar o backend e criar dados de teste:
 
-### Test the UI
+1. Rode `npm run watch` na raiz. A URL `http://localhost:5000/index.html` será aberta.
 
-After confirming that the backend is functioning and test data has been created you can test the interaction with the UI.
-1. Execute `npm run watch` in the root folder to start the application, the URL http://localhost:5000/index.html will be opened in the browser.
+A aplicação exibirá uma página com barra de busca.
 
-  The application will load and display a page featuring a search bar:
-  <br>
-  
-  ![Initial Page](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/semantic_search_initial_page.png "Initial Page")
-  
-  </br>
-2. Perform a semantic search:
+![Initial Page](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/semantic_search_initial_page.png "Initial Page")
 
-- Search for documents related to topics such as "AI," "Health," "Science," "Technology," "Space," and more.
-- Type your desired keywords or phrases in the search bar.
+2. Faça uma busca semântica:
+- Pesquise tópicos como AI, Health, Science, Technology, Space etc.
+- Digite termos/frases na barra de busca.
 
-**Example Searches:**
+Exemplos:
 - `AI Technology`
 - `Health and Wellness`
 - `Space Exploration`
 - `Science Research`
 
-#### Review the Search Results:
+#### Revisar resultados
 
-- A table displays up to 10 documents matching the search criteria.
-- The table title shows the count of documents found in brackets.
-- Next to the title, a tooltip containing a question mark reveals the generated SQL query used for the search.
-
-<br>
+- A tabela mostra até 10 documentos.
+- O título da tabela mostra a quantidade de resultados.
+- Ao lado do título, o tooltip com `?` exibe a query SQL gerada.
 
 ![Search Results](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/search_results_ui.png "Search Results Overview")
 
-</br>
-3. Refine your search:
-   
-- You can refine the search by typing extra information into the search bar at the top.
-- When executing the search again, the search text will be reformulated and displayed in the message strip.
-- The table will be updated and will show the results accordingly.
-
-<br>
+3. Refinar a busca:
+- Digite informações adicionais na barra.
+- Ao executar novamente, o texto pode ser reformulado e exibido em message strip.
+- A tabela será atualizada com os novos resultados.
 
 ![Message Strip](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/reformulation_search_msg_strip.png "Reformulated Text")
 
-</br>
-4. Verify search enhancements:
-   
-- Language Extraction: Write a search in a different language, e.g., Spanish. Execute the search and check the tooltip to confirm that the WHERE clause now contains WHERE LANGUAGE='ES'.
-- Date Extraction: Type "Search documents about health from last year" and verify that the WHERE clause includes the correct date range.
+4. Verificar melhorias da busca:
+- Extração de idioma: pesquise em outro idioma (ex.: espanhol) e confira no tooltip `WHERE LANGUAGE='ES'`.
+- Extração de data: pesquise algo como “documentos de saúde do ano passado” e valide o intervalo de datas no `WHERE`.
 
 ![Sql Query](https://github.com/SAP-samples/btp-cap-genai-semantic-search/blob/main/docs/search_query_overview.png "Search Query Overview")
-

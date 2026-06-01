@@ -26,6 +26,7 @@ Este projeto é um exemplo básico de mecanismo de busca semântica construído 
 6. [Extensões](docs/tutorial/6-Extend.md)
 7. [Log de Execução (Este Deploy)](docs/tutorial/Execution-Log.md)
 8. [Guia Detalhado por Etapa](docs/tutorial/Guia-Detalhado.md)
+9. [Plano de POC - Grounding com SAP DMS](docs/poc/Plano-POC-Grounding-DMS.md)
 
 ## Como obter suporte
 [Abra uma issue](https://github.com/marcelofiorito/btp-cap-genai-semantic-search-tutorial/issues) neste repositório se encontrar bugs ou tiver dúvidas sobre o conteúdo.

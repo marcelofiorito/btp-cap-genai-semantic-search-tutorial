@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { extractTextFromPdfBuffer } = require('./pdf-extractor');
 
 class DmsClient {
   constructor() {
@@ -48,17 +49,30 @@ class DmsClient {
 
     if (!documentInfo.contentUrl) return '';
 
-    if (!documentInfo.mimeType || !documentInfo.mimeType.startsWith('text/')) {
-      return '';
+    const mimeType = (documentInfo.mimeType || '').toLowerCase();
+    const headers = await this.getAuthHeaders();
+
+    if (mimeType.startsWith('text/')) {
+      const response = await axios.get(documentInfo.contentUrl, {
+        headers,
+        responseType: 'text',
+        timeout: 30000
+      });
+
+      return typeof response.data === 'string' ? response.data : '';
     }
 
-    const response = await axios.get(documentInfo.contentUrl, {
-      headers: await this.getAuthHeaders(),
-      responseType: 'text',
-      timeout: 30000
-    });
+    if (mimeType === 'application/pdf') {
+      const response = await axios.get(documentInfo.contentUrl, {
+        headers,
+        responseType: 'arraybuffer',
+        timeout: 45000
+      });
 
-    return typeof response.data === 'string' ? response.data : '';
+      return extractTextFromPdfBuffer(Buffer.from(response.data));
+    }
+
+    return '';
   }
 
   normalizeFolderPath(folderPath) {

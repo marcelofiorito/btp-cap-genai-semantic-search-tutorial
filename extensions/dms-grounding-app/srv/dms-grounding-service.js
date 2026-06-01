@@ -51,9 +51,22 @@ module.exports = cds.service.impl(async function () {
 
       for (const doc of documents) {
         try {
-          const extractedText = await dmsClient.getDocumentText(doc);
+          let extractedText = '';
+          let extractionError = '';
+          try {
+            extractedText = await dmsClient.getDocumentText(doc);
+          } catch (error) {
+            extractionError = error.message || 'erro desconhecido na extração';
+          }
           const maxLen = Number.parseInt(process.env.GROUNDING_MAX_TEXT_LENGTH || '20000', 10);
           const trimmedText = (extractedText || '').slice(0, Number.isFinite(maxLen) ? maxLen : 20000);
+          const fallbackText = `Document metadata fallback. Name: ${doc.name}. Repository: ${doc.repositoryId}. Path: ${doc.folderPath}. MimeType: ${doc.mimeType}.`;
+          const persistedText = trimmedText || fallbackText;
+          const message = trimmedText
+            ? 'Texto carregado com sucesso.'
+            : extractionError
+              ? `Falha ao extrair conteúdo (${extractionError}); aplicado fallback de metadados.`
+              : 'Sem extração de texto; aplicado fallback de metadados.';
 
           const existing = await tx.run(
             SELECT.one.from(SourceDocuments).where({
@@ -69,9 +82,9 @@ module.exports = cds.service.impl(async function () {
             folderPath: doc.folderPath,
             mimeType: doc.mimeType,
             contentUrl: doc.contentUrl,
-            extractedText: trimmedText,
+            extractedText: persistedText,
             lastSyncStatus: 'SYNCED',
-            lastSyncMessage: trimmedText ? 'Texto carregado com sucesso.' : 'Sem extração de texto (tipo de arquivo não suportado no MVP).',
+            lastSyncMessage: message,
             externalCreatedAt: toIsoOrNull(doc.externalCreatedAt),
             externalModifiedAt: toIsoOrNull(doc.externalModifiedAt)
           };

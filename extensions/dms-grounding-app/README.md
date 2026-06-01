@@ -24,6 +24,7 @@ Objetivo: testar grounding com documentos do SAP Document Management Service (DM
 - Integração DMS:
   - Modo real via CMIS Browser (`/browser/...`)
   - Modo mock (default, sem credenciais), para validar fluxo local.
+- Extração local de PDF com parser Node (`pdf-parse`) para grounding rápido.
 
 ## Arquitetura da POC
 
@@ -117,8 +118,9 @@ Endpoint usado para leitura de filhos:
 
 ## Observações importantes
 
-- Nesta POC, extração automática de conteúdo está limitada a `text/*`.
-- PDFs e binários exigem pipeline adicional de extração (OCR/parser), que podemos plugar na próxima etapa.
+- Nesta POC, extração automática cobre `text/*` e `application/pdf`.
+- PDFs sem camada de texto (scan/imagem) continuam exigindo OCR (ex.: Document AI) e usam fallback de metadados.
+- Se o endpoint de conteúdo do repositório bloquear download (`403/405`), o sync continua com fallback de metadados.
 - Embedding usa modo determinístico local por default; para AI Core:
   - instalar `@sap-ai-sdk/foundation-models`
   - configurar `GROUNDING_USE_AICORE=true`

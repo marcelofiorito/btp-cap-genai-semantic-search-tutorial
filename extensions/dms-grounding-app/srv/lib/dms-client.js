@@ -132,7 +132,7 @@ class DmsClient {
 
   buildDefaultContentUrl(repositoryId, objectId) {
     if (!this.baseUrl) return '';
-    const url = `${this.baseUrl}/browser/${encodeURIComponent(repositoryId)}`;
+    const url = `${this.baseUrl}/browser/${encodeURIComponent(repositoryId)}/root`;
     return `${url}?objectId=${encodeURIComponent(objectId)}&cmisselector=content`;
   }
 
